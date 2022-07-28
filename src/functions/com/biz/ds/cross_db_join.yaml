@@ -8,6 +8,7 @@ tasks:
       data:  <% inputs.body.data %>
       config:
         method: <% inputs.params.entity_type %>.findUnique
+  
   - id: get_postgres
     description: postgres fetch
     fn: com.gs.datastore
@@ -16,6 +17,7 @@ tasks:
       data: <% inputs.body.data %>
       config:
         method: <% inputs.params.entity_type %>.findUnique
+  
   - id: join_response
     fn: com.gs.return
     args: |

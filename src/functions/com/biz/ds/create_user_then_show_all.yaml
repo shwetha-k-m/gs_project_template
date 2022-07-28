@@ -1,6 +1,6 @@
 summary: datastore demo
 tasks:
-  - id: create_user # the response of this will be accessible within the parent step key, under the step1 sub key
+  - id: create_user
     description: datastore demo
     fn: com.gs.datastore
     args:
@@ -8,14 +8,8 @@ tasks:
       data: <% inputs.body.data %>
       config:
         method: <% inputs.params.entity_type %>.create
-
-    retry: #Kestra spec compliant retry mechanism. By default turned off.
-      maxAttempt: 5
-      type: constant
-      interval: PT15M
-    on_error:
-      continue: false
-  - id: find_user # the response of this will be accessible within the parent step key, under the step1 sub key
+  
+  - id: find_user 
     description: find users
     fn: com.gs.datastore
     args:
@@ -29,7 +23,7 @@ tasks:
       config:
         method: <% inputs.params.entity_type %>.findMany
 
-    retry: #Kestra spec compliant retry mechanism. By default turned off.
-      maxAttempt: 5
+    retry:
+      maxAttempt: 2
       type: constant
-      interval: PT15M
+      interval: 10s

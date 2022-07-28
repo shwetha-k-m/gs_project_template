@@ -1,0 +1,39 @@
+# config, inputs, ouputs, mappings
+# inputs: {body, params, query, headers, path, user}
+summary: Authorizes all Endpoints
+id: authz
+cache:
+  ttl: 10min
+  key: authz
+tasks:
+    - id: step1
+      description: enrich the user object
+      fn: com.gs.datastore
+      args:
+        datasource: postgres
+        data:
+          include:
+            posts:
+              where:
+                id: <% inputs.user.id %>
+        config:
+          method: User.findMany
+
+    - id: step2
+      description: construct the necessary input to the rule engine
+      fn: com.gs.transform
+      args: |
+        <%
+          {
+            resource: inputs.path,
+            resource_match: 'regex',
+            actor: inputs.user,
+            action: 'access'
+          }
+        %>
+
+    - id: step3
+      description: authorize the endpont
+      fn: com.gs.rule_engine
+      args: <% inputs %>
+      

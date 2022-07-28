@@ -1,0 +1,42 @@
+summary: httpbin authn
+id: authn
+authz: com.jfs.authz
+tasks:
+    - id: httpbin_authn
+      description: httpbin_authn
+      fn: com.gs.http
+      authz: com.jfs.authz
+      args:
+        datasource: httpbin
+        config:
+          url : /token
+          method: get
+          headers:
+            Authorization: Basic <% config.httpbin.client_id + ':' + config.httpbin.client_secret %>
+      
+    - id: httpbin_step2
+      fn: com.gs.transform
+      args: |
+          <js% if(outputs.httpbin_step1.data.json.code == 200) {
+            return {
+              code: 200,
+              success: true,
+              data: {
+                headers: {
+                  Authorization: 'Bearer ' + outputs.httpbin_step1.data.jwt
+                },
+                /*
+                query: {
+                  jwt: outputs.httpbin_step1.data.jwt
+                },
+                */
+                retry: [403]
+              }
+            };
+          } else {
+            return {
+              code: 500,
+              success : false,
+              message: 'error in httpbin_step1'
+            }
+          } %>  
