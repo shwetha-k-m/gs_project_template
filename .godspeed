@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"projectName":"restaurant_api","mongodb":false,"postgresql":true,"postgresDbName":"test","kafka":false,"elasticsearch":false,"redis":false,"svcPort":3000,"postgresDbPort":5432,"mysql":false}
+=======
+{"projectName":"godspeed_restaurant_api","mongodb":false,"postgresql":true,"postgresDbName":"test","kafka":false,"elasticsearch":false,"redis":false,"svcPort":3000,"postgresDbPort":5432,"mysql":false}
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6

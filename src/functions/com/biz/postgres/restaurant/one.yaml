@@ -7,7 +7,10 @@ tasks:
       data:
         where:
           id: <% parseInt(inputs.params.id) %>
+<<<<<<< HEAD
         include:
           menuItems:
+=======
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6
       config:
         method: Restaurant.findUnique

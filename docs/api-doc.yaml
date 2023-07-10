@@ -14,6 +14,7 @@ info:
 servers:
   - url: http://localhost:3000
 paths:
+<<<<<<< HEAD
   /another_workflow:
     post:
       summary: Call another (sub) workflow from main workflow
@@ -245,6 +246,8 @@ paths:
                 example1:
                   value:
                     lender_response_code: E001
+=======
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6
   "/postgres/category/{id}":
     get:
       summary: Fetch Category
@@ -701,6 +704,7 @@ paths:
           application/json:
             schema:
               type: array
+<<<<<<< HEAD
   /run_parallel_tasks:
     post:
       summary: Running tasks in parallel
@@ -766,6 +770,8 @@ paths:
               schema:
                 type: string
                 example: case - default
+=======
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6
 definitions:
   postgres:
     Owner:

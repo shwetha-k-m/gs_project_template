@@ -1,9 +1,14 @@
 summary: Fetch many Restaurant
+<<<<<<< HEAD
+=======
+id: fetch_many_restaurant_id
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6
 tasks:
   - id: postgres_restaurant_search
     fn: com.gs.datastore
     args:
       datasource: postgres
+<<<<<<< HEAD
       data:
         where:
           location: <% inputs.body.location %>
@@ -15,3 +20,29 @@ tasks:
 
       config:
         method: Restaurant.findMany
+=======
+      data: <% inputs.body %>
+      config:
+        method: Restaurant.findMany
+  - id: transorm_task
+    fn: com.gs.transform
+    args: |
+      <% return{
+      data: {
+      location: outputs.postgres_restaurant_search.data.location,
+       message: 'error in postgres_restaurant_search'},
+      code:200
+      }
+      }
+      %>
+      # <coffee% if outputs.postgres_restaurant_search.data.json.code == 200 then {
+      #       code: 200,
+      #       success: true,
+      #       data: outputs.postgres_restaurant_search.data.json,
+      #       headers: outputs.postgres_restaurant_search.data.headers
+      #   } else {
+      #       code: 500,
+      #       success: false,
+      #       message: 'error in postgres_restaurant_search'
+      #   } %>
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6

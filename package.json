@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "restaurant_api",
+=======
+  "name": "godspeed_restaurant_api",
+>>>>>>> fd3dbe0228930f072a40827bb76227df93b035c6
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
